@@ -1,0 +1,15 @@
+C:\Workspace\fiap\fiap-ads-2\dotnet\2025_02_12\2tdspwProjetos\1_HelloWorld\bin\Debug\net9.0\1_HelloWorld.exe
+C:\Workspace\fiap\fiap-ads-2\dotnet\2025_02_12\2tdspwProjetos\1_HelloWorld\bin\Debug\net9.0\1_HelloWorld.deps.json
+C:\Workspace\fiap\fiap-ads-2\dotnet\2025_02_12\2tdspwProjetos\1_HelloWorld\bin\Debug\net9.0\1_HelloWorld.runtimeconfig.json
+C:\Workspace\fiap\fiap-ads-2\dotnet\2025_02_12\2tdspwProjetos\1_HelloWorld\bin\Debug\net9.0\1_HelloWorld.dll
+C:\Workspace\fiap\fiap-ads-2\dotnet\2025_02_12\2tdspwProjetos\1_HelloWorld\bin\Debug\net9.0\1_HelloWorld.pdb
+C:\Workspace\fiap\fiap-ads-2\dotnet\2025_02_12\2tdspwProjetos\1_HelloWorld\obj\Debug\net9.0\1_HelloWorld.GeneratedMSBuildEditorConfig.editorconfig
+C:\Workspace\fiap\fiap-ads-2\dotnet\2025_02_12\2tdspwProjetos\1_HelloWorld\obj\Debug\net9.0\1_HelloWorld.AssemblyInfoInputs.cache
+C:\Workspace\fiap\fiap-ads-2\dotnet\2025_02_12\2tdspwProjetos\1_HelloWorld\obj\Debug\net9.0\1_HelloWorld.AssemblyInfo.cs
+C:\Workspace\fiap\fiap-ads-2\dotnet\2025_02_12\2tdspwProjetos\1_HelloWorld\obj\Debug\net9.0\1_HelloWorld.csproj.CoreCompileInputs.cache
+C:\Workspace\fiap\fiap-ads-2\dotnet\2025_02_12\2tdspwProjetos\1_HelloWorld\obj\Debug\net9.0\1_HelloWorld.sourcelink.json
+C:\Workspace\fiap\fiap-ads-2\dotnet\2025_02_12\2tdspwProjetos\1_HelloWorld\obj\Debug\net9.0\1_HelloWorld.dll
+C:\Workspace\fiap\fiap-ads-2\dotnet\2025_02_12\2tdspwProjetos\1_HelloWorld\obj\Debug\net9.0\refint\1_HelloWorld.dll
+C:\Workspace\fiap\fiap-ads-2\dotnet\2025_02_12\2tdspwProjetos\1_HelloWorld\obj\Debug\net9.0\1_HelloWorld.pdb
+C:\Workspace\fiap\fiap-ads-2\dotnet\2025_02_12\2tdspwProjetos\1_HelloWorld\obj\Debug\net9.0\1_HelloWorld.genruntimeconfig.cache
+C:\Workspace\fiap\fiap-ads-2\dotnet\2025_02_12\2tdspwProjetos\1_HelloWorld\obj\Debug\net9.0\ref\1_HelloWorld.dll
