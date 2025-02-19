@@ -5,6 +5,7 @@ import br.com.fiap.api_rest.dto.LivroResponse;
 import br.com.fiap.api_rest.model.Livro;
 import br.com.fiap.api_rest.repository.LivroRepository;
 import br.com.fiap.api_rest.service.LivroService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +27,7 @@ public class LivroController {
     // POST, GET, PUT, DELETE
 
     @PostMapping
-    public ResponseEntity<Livro> createLivro(@RequestBody LivroRequest livro) {
+    public ResponseEntity<Livro> createLivro(@RequestBody @Valid LivroRequest livro) {
         Livro livroSalvo = livroRepository.save(livroService.requestToLivro(livro));
         return new ResponseEntity<>(livroSalvo,HttpStatus.CREATED);
     }
