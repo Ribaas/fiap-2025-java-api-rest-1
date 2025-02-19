@@ -1,2 +1,0 @@
-Apostila: https://lleonardogr.github.io/tutoriais_aulas/instalando-visual-studio-rider.html
-DotNet: https://dotnet.microsoft.com/pt-br/download
