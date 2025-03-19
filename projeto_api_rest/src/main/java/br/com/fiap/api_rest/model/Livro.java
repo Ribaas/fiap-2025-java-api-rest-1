@@ -1,11 +1,9 @@
 package br.com.fiap.api_rest.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Livro {
@@ -13,12 +11,17 @@ public class Livro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String titulo;
-    private String autor;
+    @ManyToMany(mappedBy = "livros")
+    private List<Autor> autores;
     private int preco;
     private Categoria categoria;
     private String isbn;
     private boolean ebook;
     private Date dataLancamento;
+
+    @ManyToOne
+    @JoinColumn(name = "id_biblioteca")
+    private Biblioteca biblioteca;
 
     public Long getId() {
         return id;
@@ -36,12 +39,12 @@ public class Livro {
         this.titulo = titulo;
     }
 
-    public String getAutor() {
-        return autor;
+    public List<Autor> getAutores() {
+        return autores;
     }
 
-    public void setAutor(String autor) {
-        this.autor = autor;
+    public void setAutores(List<Autor> autores) {
+        this.autores = autores;
     }
 
     public int getPreco() {
@@ -82,5 +85,13 @@ public class Livro {
 
     public void setDataLancamento(Date dataLancamento) {
         this.dataLancamento = dataLancamento;
+    }
+
+    public Biblioteca getBiblioteca() {
+        return biblioteca;
+    }
+
+    public void setBiblioteca(Biblioteca biblioteca) {
+        this.biblioteca = biblioteca;
     }
 }
