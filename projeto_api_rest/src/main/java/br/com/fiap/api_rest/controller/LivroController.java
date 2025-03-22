@@ -2,7 +2,7 @@ package br.com.fiap.api_rest.controller;
 
 import br.com.fiap.api_rest.dto.LivroRequest;
 import br.com.fiap.api_rest.dto.LivroResponse;
-import br.com.fiap.api_rest.dto.LivroResponseDTO;
+import br.com.fiap.api_rest.dto.record.LivroResponseDTO;
 import br.com.fiap.api_rest.model.Livro;
 import br.com.fiap.api_rest.repository.LivroRepository;
 import br.com.fiap.api_rest.service.LivroService;
@@ -22,8 +22,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -64,13 +62,13 @@ public class LivroController {
 
     @Operation(summary = "Lista todos os livros por páginas")
     @GetMapping
-    public ResponseEntity<Page<LivroResponseDTO>> readLivros(@RequestParam(defaultValue = "0") Integer pageNumber) {
+    public ResponseEntity<Page<LivroResponse>> readLivros(@RequestParam(defaultValue = "0") Integer pageNumber) {
         Pageable pageable = PageRequest.of(
                 pageNumber,
                 2,
                 Sort.by("titulo").ascending().and(Sort.by("autor").ascending())
         );
-        return new ResponseEntity<>(livroService.findAllDTO(pageable), HttpStatus.OK);
+        return new ResponseEntity<>(livroService.findAll(pageable), HttpStatus.OK);
     }
 
     @Operation(summary = "Retorna um livro por ID")
@@ -92,13 +90,13 @@ public class LivroController {
             }
     )
     @GetMapping("/{id}")
-    public ResponseEntity<LivroResponseDTO> readLivro(@PathVariable Long id) {
+    public ResponseEntity<LivroResponse> readLivro(@PathVariable Long id) {
         Optional<Livro> livro = livroRepository.findById(id);
         if (livro.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        LivroResponseDTO livroResponseDTO = livroService.livroToResponseDTO(livro.get(), false);
-        return new ResponseEntity<>(livroResponseDTO,HttpStatus.OK);
+        LivroResponse livroResponse = livroService.livroToResponse(livro.get(), false);
+        return new ResponseEntity<>(livroResponse,HttpStatus.OK);
     }
 
     @Operation(summary = "Atualiza um livro existente")

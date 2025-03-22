@@ -1,4 +1,4 @@
-package br.com.fiap.api_rest.dto;
+package br.com.fiap.api_rest.dto.record;
 
 import org.springframework.hateoas.Link;
 

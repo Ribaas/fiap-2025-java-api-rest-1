@@ -2,9 +2,9 @@ package br.com.fiap.api_rest.service;
 
 import br.com.fiap.api_rest.controller.LivroController;
 import br.com.fiap.api_rest.dto.LivroRequest;
-import br.com.fiap.api_rest.dto.LivroRequestDTO;
+import br.com.fiap.api_rest.dto.record.LivroRequestDTO;
 import br.com.fiap.api_rest.dto.LivroResponse;
-import br.com.fiap.api_rest.dto.LivroResponseDTO;
+import br.com.fiap.api_rest.dto.record.LivroResponseDTO;
 import br.com.fiap.api_rest.model.Livro;
 import br.com.fiap.api_rest.repository.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
@@ -28,7 +27,7 @@ public class LivroService {
 
     public Livro requestToLivro (LivroRequest livroRequest) {
         Livro livro = new Livro();
-        livro.setAutor(livroRequest.getAutor());
+//        livro.setAutor(livroRequest.getAutor());
         livro.setTitulo(livroRequest.getTitulo());
         livro.setPreco(livroRequest.getPreco());
         livro.setCategoria(livroRequest.getCategoria());
@@ -36,35 +35,15 @@ public class LivroService {
         return livro;
     }
 
-    public Livro recordToLivro (LivroRequestDTO livroRecord) {
-        Livro livro = new Livro();
-        livro.setAutor(livroRecord.autor());
-        livro.setTitulo(livroRecord.titulo());
-        return livro;
-    }
-
-    public LivroResponse livroToResponse (Livro livro) {
-        LivroResponse livroResponse = new LivroResponse(livro.getId(), livro.getTitulo() + " - " + livro.getAutor());
-        return livroResponse;
-    }
-
-    public LivroResponseDTO livroToResponseDTO (Livro livro, boolean self) {
-        Link link;
-
-        if (self) {
-            link = linkTo(methodOn(LivroController.class).readLivro(livro.getId())).withSelfRel();
-        } else {
-            link = linkTo(methodOn(LivroController.class).readLivros(0)).withRel("Lista de Livros");
-        }
-
-        LivroResponseDTO livroResponse = new LivroResponseDTO(livro.getId(), livro.getTitulo() + " - " + livro.getAutor(), link);
+    public LivroResponse livroToResponse (Livro livro, boolean self) {
+        LivroResponse livroResponse = new LivroResponse(livro.getId(), livro.getTitulo() + " - " /* + livro.getAutor() */);
         return livroResponse;
     }
 
     public List<LivroResponse> livrosToResponse (List<Livro> livros) {
         List<LivroResponse> listaLivros = new ArrayList<>();
         for (Livro livro : livros) {
-            listaLivros.add(livroToResponse(livro));
+            listaLivros.add(livroToResponse(livro, true));
         }
         return listaLivros;
 
@@ -74,11 +53,7 @@ public class LivroService {
     }
 
     public Page<LivroResponse> findAll(Pageable pageable) {
-        return livroRepository.findAll(pageable).map(this::livroToResponse);
-    }
-
-    public Page<LivroResponseDTO> findAllDTO(Pageable pageable) {
-        return livroRepository.findAll(pageable).map(livro -> livroToResponseDTO(livro, true));
+        return livroRepository.findAll(pageable).map(livro -> livroToResponse(livro, true));
     }
 
 }
