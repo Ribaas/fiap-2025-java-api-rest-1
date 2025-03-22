@@ -24,6 +24,8 @@ public class LivroRequest {
     @Pattern(regexp = "(^970\\d{7}$)|(^970\\d{10}$)", message = "O ISBN deve seguir o padrao ISBN10 ou ISBN13")
     private String isbn;
 
+    private Long idBiblioteca;
+
     public String getTitulo() {
         return titulo;
     }
@@ -62,5 +64,13 @@ public class LivroRequest {
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;
+    }
+
+    public Long getIdBiblioteca() {
+        return idBiblioteca;
+    }
+
+    public void setIdBiblioteca(Long idBiblioteca) {
+        this.idBiblioteca = idBiblioteca;
     }
 }

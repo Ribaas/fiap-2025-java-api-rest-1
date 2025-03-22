@@ -6,6 +6,7 @@ public class LivroResponse{
     private Long id;
     private String infoLivro;
     private Link link;
+    private Long idBiblioteca;
 
     public LivroResponse(Long id, String infoLivro) {
         this.id = id;
@@ -34,5 +35,13 @@ public class LivroResponse{
 
     public void setLink(Link link) {
         this.link = link;
+    }
+
+    public Long getIdBiblioteca() {
+        return idBiblioteca;
+    }
+
+    public void setIdBiblioteca(Long idBiblioteca) {
+        this.idBiblioteca = idBiblioteca;
     }
 }

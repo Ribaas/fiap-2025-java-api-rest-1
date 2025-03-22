@@ -66,7 +66,7 @@ public class LivroController {
         Pageable pageable = PageRequest.of(
                 pageNumber,
                 2,
-                Sort.by("titulo").ascending().and(Sort.by("autor").ascending())
+                Sort.by("titulo").ascending()/* .and(Sort.by("autor").ascending())*/
         );
         return new ResponseEntity<>(livroService.findAll(pageable), HttpStatus.OK);
     }
