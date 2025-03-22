@@ -3,16 +3,12 @@ package br.com.fiap.api_rest.service;
 import br.com.fiap.api_rest.dto.*;
 import br.com.fiap.api_rest.model.Biblioteca;
 import br.com.fiap.api_rest.model.Endereco;
-import br.com.fiap.api_rest.model.Livro;
 import br.com.fiap.api_rest.repository.BibliotecaRepository;
 import br.com.fiap.api_rest.repository.EnderecoRepository;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
 
 @Service
 public class BibliotecaService {
@@ -56,6 +52,10 @@ public class BibliotecaService {
         biblioteca.setEndereco(enderecoSalvo);
         Biblioteca bibliotecaSalva = bibliotecaRepository.save(biblioteca);
         return bibliotecaToResponse(bibliotecaSalva);
+    }
+
+    public List<BibliotecaResponse> readAll () {
+        return bibliotecaRepository.findAll().stream().map(this::bibliotecaToResponse).toList();
     }
 
 
