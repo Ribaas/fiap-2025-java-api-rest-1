@@ -2,6 +2,7 @@ package br.com.fiap.api_rest.controller;
 
 import br.com.fiap.api_rest.dto.LivroRequest;
 import br.com.fiap.api_rest.dto.LivroResponse;
+import br.com.fiap.api_rest.dto.VincularAutorRequest;
 import br.com.fiap.api_rest.dto.record.LivroResponseDTO;
 import br.com.fiap.api_rest.model.Livro;
 import br.com.fiap.api_rest.repository.LivroRepository;
@@ -153,6 +154,11 @@ public class LivroController {
 
         livroRepository.deleteById(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}/vincular")
+    public ResponseEntity<Void> vincularAutor (@RequestBody VincularAutorRequest vincularAutorRequest) {
+        // TODO
     }
 
 }
