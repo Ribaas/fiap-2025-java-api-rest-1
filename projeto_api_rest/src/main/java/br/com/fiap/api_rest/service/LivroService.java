@@ -22,8 +22,12 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @Service
 public class LivroService {
 
+    private final LivroRepository livroRepository;
+
     @Autowired
-    private LivroRepository livroRepository;
+    public LivroService (LivroRepository livroRepository) {
+        this.livroRepository = livroRepository;
+    }
 
     public Livro requestToLivro (LivroRequest livroRequest) {
         Livro livro = new Livro();
