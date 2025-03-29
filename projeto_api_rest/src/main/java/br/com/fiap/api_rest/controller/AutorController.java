@@ -20,7 +20,7 @@ public class AutorController {
     private AutorService autorService;
 
     @PostMapping
-    public ResponseEntity<AutorResponse> createBiblioteca(@RequestBody AutorRequest autor) {
+    public ResponseEntity<AutorResponse> createAutor(@RequestBody AutorRequest autor) {
         return new ResponseEntity<>(autorService.createAutor(autor), HttpStatus.CREATED);
     }
 
@@ -28,4 +28,28 @@ public class AutorController {
     public ResponseEntity<List<AutorResponse>> readAutores() {
         return new ResponseEntity<>(autorService.readAll(), HttpStatus.OK);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<AutorResponse> readAutor(@PathVariable Long id) {
+        AutorResponse autor = autorService.readById(id);
+        if (autor == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(autor, HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<AutorResponse> updateAutor(@RequestBody AutorRequest autor, @PathVariable Long id) {
+        AutorResponse autorAtualizado = autorService.update(id, autor);
+        if (autorAtualizado == null) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(autorAtualizado, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteAutor (@PathVariable Long id) {
+        boolean result = autorService.delete(id);
+        if (!result) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 }

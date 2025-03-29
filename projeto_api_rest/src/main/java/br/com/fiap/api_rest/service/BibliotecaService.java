@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BibliotecaService {
@@ -56,6 +57,35 @@ public class BibliotecaService {
 
     public List<BibliotecaResponse> readAll () {
         return bibliotecaRepository.findAll().stream().map(this::bibliotecaToResponse).toList();
+    }
+
+    public BibliotecaResponse readById (Long id) {
+        Optional<Biblioteca> biblioteca = bibliotecaRepository.findById(id);
+        if (biblioteca.isEmpty()) return null;
+        return bibliotecaToResponse(biblioteca.get());
+    }
+
+    public BibliotecaResponse update (Long id, BibliotecaRequest bibliotecaRequest) {
+        Optional<Biblioteca> bibliotecaExistente = bibliotecaRepository.findById(id);
+        if (bibliotecaExistente.isEmpty()) return null;
+
+        Endereco enderecoExistente = bibliotecaExistente.get().getEndereco();
+        Endereco enderecoAtualizado = requestToEndereco(bibliotecaRequest.getEndereco());
+        enderecoAtualizado.setId(enderecoAtualizado.getId());
+        Endereco enderecoSalvo = enderecoRepository.save(enderecoAtualizado);
+
+        Biblioteca bibliotecaAtualizado = requestToBiblioteca(bibliotecaRequest);
+        bibliotecaAtualizado.setId(id);
+        bibliotecaAtualizado.setEndereco(enderecoSalvo);
+        bibliotecaRepository.save(bibliotecaAtualizado);
+        return bibliotecaToResponse(bibliotecaAtualizado);
+    }
+
+    public boolean delete (Long id) {
+        Optional<Biblioteca> bibliotecaExistente = bibliotecaRepository.findById(id);
+        if (bibliotecaExistente.isEmpty()) return false;
+        bibliotecaRepository.deleteById(id);
+        return true;
     }
 
 

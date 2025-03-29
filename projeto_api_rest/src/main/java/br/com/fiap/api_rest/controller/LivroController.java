@@ -159,6 +159,7 @@ public class LivroController {
     @PutMapping("/{id}/vincular")
     public ResponseEntity<Void> vincularAutor (@RequestBody VincularAutorRequest vincularAutorRequest) {
         // TODO
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }
